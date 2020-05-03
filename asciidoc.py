@@ -4104,8 +4104,11 @@ class Macro:
                     if self.prefix == '#':
                         AttributeList.subs(d)
             if name == 'callout':
-                listindex = int(d['index'])
-                d['coid'] = calloutmap.add(listindex)
+                try:
+                    listindex = int(d['index'])
+                    d['coid'] = calloutmap.add(listindex)
+                except ValueError:
+                    pass
             # The alt attribute is the first image macro positional attribute.
             if name == 'image' and '1' in d:
                 d['alt'] = d['1']
